@@ -1,0 +1,14 @@
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-v2-svc
+  namespace: default
+spec:
+  selector:
+    app: app-v2
+    version: v2
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080

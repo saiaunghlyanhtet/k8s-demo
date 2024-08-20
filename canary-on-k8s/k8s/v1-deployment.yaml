@@ -1,0 +1,23 @@
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-v1
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-v1
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: app-v1
+        version: v1
+    spec:
+      containers:
+        - name: app-v1
+          image: saiaunghlyanhtet/canary-on-k8s:v1
+          ports:
+            - containerPort: 8080
