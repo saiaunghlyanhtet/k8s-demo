@@ -3,11 +3,12 @@
 count_v1=0
 count_v2=0
 
-# Replace with your ALB URL
-ELB_URL=""
+# ALB URL
+ALB_URL=$(kubectl get ingress -o=jsonpath='{.items[0].status.loadBalancer.ingress[0].hostname}')
 
-for i in {1..10}; do
-  response=$(curl -s $ELB_URL)
+
+for i in {1..100}; do
+  response=$(curl -s $ALB_URL)
 
   if [[ $response == *"1"* ]]; then
     ((count_v1++))
