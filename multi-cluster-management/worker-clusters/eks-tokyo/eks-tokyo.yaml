@@ -1,4 +1,4 @@
-apiVersion: cluster.x-k8s.io/v1beta1
+apiVersion: cluster.x-k8s.io/v1
 kind: Cluster
 metadata:
   name: eks-tokyo
@@ -9,15 +9,15 @@ spec:
       cidrBlocks:
         - 192.168.0.0/16
   controlPlaneRef:
-    apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+    apiVersion: controlplane.cluster.x-k8s.io/v1
     kind: AWSManagedControlPlane
     name: eks-tokyo-control-plane
   infrastructureRef:
-    apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+    apiVersion: controlplane.cluster.x-k8s.io/v1
     kind: AWSManagedControlPlane
     name: eks-tokyo-control-plane
 ---
-apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+apiVersion: controlplane.cluster.x-k8s.io/v1
 kind: AWSManagedControlPlane
 metadata:
   name: eks-tokyo-control-plane
@@ -27,7 +27,7 @@ spec:
   sshKeyName: eks-tokyo
   version: v1.30.0
 ---
-apiVersion: cluster.x-k8s.io/v1beta1
+apiVersion: cluster.x-k8s.io/v1
 kind: MachinePool
 metadata:
   name: eks-tokyo-pool-0
@@ -41,11 +41,11 @@ spec:
         dataSecretName: ""
       clusterName: eks-tokyo
       infrastructureRef:
-        apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+        apiVersion: infrastructure.cluster.x-k8s.io/v1
         kind: AWSManagedMachinePool
         name: eks-tokyo-pool-0
 ---
-apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+apiVersion: infrastructure.cluster.x-k8s.io/v1
 kind: AWSManagedMachinePool
 metadata:
   name: eks-tokyo-pool-0
