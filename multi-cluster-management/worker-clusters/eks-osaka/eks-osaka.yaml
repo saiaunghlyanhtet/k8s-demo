@@ -1,6 +1,8 @@
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
+  labels:
+    app.kubernetes.io/instance: eks-osaka-app
   name: eks-osaka
   namespace: default
 spec:
