@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: eks-tokyo-app
+spec:
+  destination:
+    namespace: "default"
+    server: https://kubernetes.default.svc
+    name: ""
+  source:
+    path: "multi-cluster-management/worker-clusters/eks-tokyo"
+    repoURL: "https://github.com/saiaunghlyanhtet/k8s-demo.git"
+    targetRevision: HEAD
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - Validate=false
+      - Prune=true
+      - ApplyOutOfSyncOnly=true
