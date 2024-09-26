@@ -1,4 +1,4 @@
-apiVersion: cluster.x-k8s.io/v1
+apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
   name: eks-osaka
@@ -9,15 +9,15 @@ spec:
       cidrBlocks:
         - 192.168.0.0/16
   controlPlaneRef:
-    apiVersion: controlplane.cluster.x-k8s.io/v1
+    apiVersion: controlplane.cluster.x-k8s.io/v1beta2
     kind: AWSManagedControlPlane
     name: eks-osaka-control-plane
   infrastructureRef:
-    apiVersion: controlplane.cluster.x-k8s.io/v1
+    apiVersion: controlplane.cluster.x-k8s.io/v1beta2
     kind: AWSManagedControlPlane
     name: eks-osaka-control-plane
 ---
-apiVersion: controlplane.cluster.x-k8s.io/v1
+apiVersion: controlplane.cluster.x-k8s.io/v1beta2
 kind: AWSManagedControlPlane
 metadata:
   name: eks-osaka-control-plane
@@ -27,7 +27,7 @@ spec:
   sshKeyName: eks-osaka
   version: v1.30.0
 ---
-apiVersion: cluster.x-k8s.io/v1
+apiVersion: cluster.x-k8s.io/v1beta1
 kind: MachinePool
 metadata:
   name: eks-osaka-pool-0
@@ -41,11 +41,11 @@ spec:
         dataSecretName: ""
       clusterName: eks-osaka
       infrastructureRef:
-        apiVersion: infrastructure.cluster.x-k8s.io/v1
+        apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
         kind: AWSManagedMachinePool
         name: eks-osaka-pool-0
 ---
-apiVersion: infrastructure.cluster.x-k8s.io/v1
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
 kind: AWSManagedMachinePool
 metadata:
   name: eks-osaka-pool-0
